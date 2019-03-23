@@ -62,26 +62,14 @@ $("#submit-btn").on("click", function (event) {
 // Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
 database.ref().on("child_added", function (childSnapshot) {
 
-    //  var duration = moment(startDate).subtract(now); // produces NaN
-    //  var duration = moment(startDate).fromNow(); // produces Invalid Date
-    //  var duration = moment(start).toNow();  // produces Invalid Date
-    //  var duration = moment(start).fromNow(); // produces Invalid Date
-    //  var duration = moment(start).subtract();  // produces NaN
-    //  var duration = startDate - now; // produces NaN
-    //  var duration = moment('start').fromNow(true); // produces Invalid Date
-    //  var duration = moment(startDate).subtract(); // produces NaN
-    //  var duration = moment(startDate).subtract(3/20/2019); // produces NaN
-    //  var duration = moment(3/20/2019).subtract(5/6/1987); // produces 0
-    //  var duration = moment(5/12/1987).subtract(3/20/2019); //produces 0 
-    // var duration = moment().diff("05/06/1987", "months"); // WORKING Thanks Hanna
-
-
-
+    
 
     var dbtrainName = (childSnapshot.val().trainName);
     var dbdestination = (childSnapshot.val().destination);
     var dbnextArrival = (childSnapshot.val().nextArrival);
     var dbfrequency = (childSnapshot.val().frequency);
+    
+    // calculations
     
     var duration = moment().diff(dbnextArrival, "months");
     var totalBilled = duration * dbfrequency;
@@ -99,8 +87,6 @@ database.ref().on("child_added", function (childSnapshot) {
     console.log("frequency = " + childSnapshot.val().frequency);
     console.log("Duration = " + duration);
     console.log("Now = " + now);
-    console.log("Total Billed = " + totalBilled);
-    console.log("Total Billed Currency Format = $" + totalBilledCurrency);
 
 
         
